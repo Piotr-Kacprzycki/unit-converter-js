@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css.css">
+</head>
+
+<body>
+	<label for="converter">Konwerter <span class="celcUnit">°C</span> na <span class="fahrUnit">°F</span></label>
+	<input type="text" id="converter" placeholder="Wpisz liczbę...">
+	<p class="result"></p>
+	<br><br>
+	<div>
+		<button class="conv">Konwertuj</button>
+		<button class="reset">Reset</button>
+		<button class="change">Zamień</button>
+	</div>
+	<script>
+		const btnConvert = document.querySelector('.conv');
+		const btnReset = document.querySelector('.reset');
+		const btnChange = document.querySelector('.change');
+		let result = document.querySelector('.result');
+		let celcUnit = document.querySelector('.celcUnit');
+		let fahrUnit = document.querySelector('.fahrUnit');
+		let converterText = document.querySelector('#converter');
+
+		let celcius;
+		let fahrenheit;
+
+		const resetAll = () => {
+			result.textContent = ''
+			converterText.value = ''
+
+
+		}
+		btnReset.addEventListener('click', resetAll)
+
+		const replace = () => {
+			if (celcUnit.textContent === '°C') {
+				celcUnit.textContent = '°F'
+				fahrUnit.textContent = '°C'
+				result.textContent = ''
+
+			} else {
+
+				fahrUnit.textContent = '°F'
+				celcUnit.textContent = '°C'
+				result.textContent = ''
+
+			}
+
+		}
+		btnChange.addEventListener('click', replace)
+
+
+
+
+
+
+		const resultTemp = () => {
+			if (celcUnit.textContent === '°F') {
+
+				celcius = (converterText.value - 32) / 1.8
+
+				result.textContent = `${converterText.value} °F to ${celcius.toFixed(1)} °C`
+
+
+			}
+			if (celcUnit.textContent === '°C') {
+
+				fahrenheit = converterText.value * 1.8 + 32
+				result.textContent = `${converterText.value} °C to ${fahrenheit} °F`
+
+
+			}
+			if (converterText.value === "") {
+				const text = "Wpisz liczbę !"
+				result.textContent = text
+
+
+			} else {
+				converterText.value = ""
+
+			}
+
+
+
+
+
+
+
+		}
+
+		btnConvert.addEventListener('click', resultTemp)
+	</script>
+</body>
+
+</html>
